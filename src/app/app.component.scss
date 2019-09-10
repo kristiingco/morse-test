@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Andika');
+
+$main-font: 'Andika', sans-serif;
+
 $primary-color: #008b8b;
 $secondary-color: #ffffff;
 
 body {
     background-color: $primary-color;
     color: $secondary-color;
+    font-family: $main-font;
 }
