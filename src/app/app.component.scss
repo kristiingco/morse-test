@@ -1,9 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Andika');
-
-$main-font: 'Andika', sans-serif;
-
-$primary-color: #008b8b;
-$secondary-color: #ffffff;
+@import "../assets/variables";
 
 body {
     background-color: $primary-color;
