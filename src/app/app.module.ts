@@ -9,6 +9,7 @@ import { MainTitleComponent } from './main-title/main-title.component';
 import { AboutComponent } from './about/about.component';
 import { HeaderTitleComponent } from './header-title/header-title.component';
 import { InfoContentComponent } from './info-content/info-content.component';
+import { InstructionsComponent } from './instructions/instructions.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { InfoContentComponent } from './info-content/info-content.component';
     MainTitleComponent,
     AboutComponent,
     HeaderTitleComponent,
-    InfoContentComponent
+    InfoContentComponent,
+    InstructionsComponent,
   ],
   imports: [
     BrowserModule,
