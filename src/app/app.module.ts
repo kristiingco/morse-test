@@ -8,6 +8,7 @@ import { ButtonComponent } from './button/button.component';
 import { MainTitleComponent } from './main-title/main-title.component';
 import { AboutComponent } from './about/about.component';
 import { HeaderTitleComponent } from './header-title/header-title.component';
+import { InfoContentComponent } from './info-content/info-content.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HeaderTitleComponent } from './header-title/header-title.component';
     ButtonComponent,
     MainTitleComponent,
     AboutComponent,
-    HeaderTitleComponent
+    HeaderTitleComponent,
+    InfoContentComponent
   ],
   imports: [
     BrowserModule,
