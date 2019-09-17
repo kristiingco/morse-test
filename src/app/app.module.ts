@@ -10,6 +10,7 @@ import { AboutComponent } from './about/about.component';
 import { HeaderTitleComponent } from './header-title/header-title.component';
 import { InfoContentComponent } from './info-content/info-content.component';
 import { InstructionsComponent } from './instructions/instructions.component';
+import { InputInstructionsComponent } from './input-instructions/input-instructions.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { InstructionsComponent } from './instructions/instructions.component';
     HeaderTitleComponent,
     InfoContentComponent,
     InstructionsComponent,
+    InputInstructionsComponent
   ],
   imports: [
     BrowserModule,
