@@ -7,6 +7,7 @@ import { StartScreenComponent } from './start-screen/start-screen.component';
 import { ButtonComponent } from './button/button.component';
 import { MainTitleComponent } from './main-title/main-title.component';
 import { AboutComponent } from './about/about.component';
+import { HeaderTitleComponent } from './header-title/header-title.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { AboutComponent } from './about/about.component';
     StartScreenComponent,
     ButtonComponent,
     MainTitleComponent,
-    AboutComponent
+    AboutComponent,
+    HeaderTitleComponent
   ],
   imports: [
     BrowserModule,
