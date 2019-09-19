@@ -12,6 +12,7 @@ import { InfoContentComponent } from './info-content/info-content.component';
 import { InstructionsComponent } from './instructions/instructions.component';
 import { InputInstructionsComponent } from './input-instructions/input-instructions.component';
 import { TestInputComponent } from './test-input/test-input.component';
+import { InputItemComponent } from './input-item/input-item.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TestInputComponent } from './test-input/test-input.component';
     InfoContentComponent,
     InstructionsComponent,
     InputInstructionsComponent,
-    TestInputComponent
+    TestInputComponent,
+    InputItemComponent
   ],
   imports: [
     BrowserModule,
