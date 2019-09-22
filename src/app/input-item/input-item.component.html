@@ -1,1 +1,5 @@
-<p>input-item works!</p>
+<div style="text-align: center"  *ngIf="visible">
+<h1>{{ word }}</h1>
+<input type="text" (keyup.enter)="onKey($event)">
+</div>
+{{ score }}

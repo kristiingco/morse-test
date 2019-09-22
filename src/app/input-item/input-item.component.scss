@@ -1,0 +1,12 @@
+@import "../../assets/variables";
+
+input {
+    background: none;
+    border: 0;
+    border-bottom: 3px solid $secondary-color;
+    width: 300px;
+    color: white;
+    font-family: 'Andika';
+    font-size: 40px;
+    outline: 0;
+}
