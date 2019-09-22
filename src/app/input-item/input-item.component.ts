@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+const morsify = require('morsify');
 
 @Component({
   selector: 'app-input-item',
@@ -20,8 +21,9 @@ export class InputItemComponent implements OnInit {
 
   onKey(event) {
     const inputValue = event.target.value;
-    for (let i = 0; i < inputValue.length; i++) {
-      if (inputValue[i] === this.word[i]) {
+    const decode = morsify.decode(inputValue);
+    for (let i = 0; i < decode.length; i++) {
+      if (decode[i] === this.word[i]) {
         this.score += 1;
       }
     }
