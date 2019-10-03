@@ -3,6 +3,9 @@ int longTimer = 800; //long signal in morse code
 int interval = 300; //interval between signals
 int delayTime = 1000; //delay between letters
 int ledPin = 2; //default led pin
+int resetValue = -1; //reset value
+int firstTrackStart = 1; //first track start
+int secondTrackStart = 11; //second track sta
 
 int val; //val to be read
 
@@ -21,7 +24,7 @@ int s[] = {shortTimer, shortTimer, shortTimer};
 void setup() {
   Serial.begin(9600);
   pinMode(ledPin, OUTPUT);
-  val = -1;
+  val = resetValue;
 }
 
 void loop() {
@@ -33,7 +36,7 @@ void loop() {
 
 void stopListener(){
   if (val == -2){
-    val = -1;
+    val = resetValue;
   }
 }
 
@@ -54,28 +57,28 @@ void firstTrack() {
   if (val == 2) {
     performSequence(e,1);
     delay(delayTime);
-    val = -1;
+    val = resetValue;
     Serial.write(3);
   } else if (val == 4){
     performSequence(a,2);
     delay(delayTime);
-    val = -1;
+    val = resetValue;
     Serial.write(5);
   } else if (val == 6){
     performSequence(r,3);
     delay(delayTime);
-    val = -1;
+    val = resetValue;
     Serial.write(7);
   } else if (val == 8){
     performSequence(t,1);
     delay(delayTime);
-    val = -1;
+    val = resetValue;
     Serial.write(9);
   } else if (val == 10){
     performSequence(h,4);
     delay(delayTime);
-    val = -1;
-    Serial.write(1);
+    val = resetValue;
+    Serial.write(firstTrackStart);
   }
 }
 
@@ -83,28 +86,28 @@ void secondTrack() {
   if (val == 12) {
     performSequence(d,3);
     delay(delayTime);
-    val = -1;
+    val = resetValue;
     Serial.write(13);
   } else if (val == 14){
     performSequence(i,2);
     delay(delayTime);
-    val = -1;
+    val = resetValue;
     Serial.write(15);
   } else if (val == 16){
     performSequence(n,2);
     delay(delayTime);
-    val = -1;
+    val = resetValue;
     Serial.write(17);
   } else if (val == 18){
     performSequence(o,3);
     delay(delayTime);
-    val = -1;
+    val = resetValue;
     Serial.write(19);
   } else if (val == 20){
     performSequence(s,3);
     delay(delayTime);
-    val = -1;
-    Serial.write(11);
+    val = resetValue;
+    Serial.write(secondTrackStart);
   }
 }
 
