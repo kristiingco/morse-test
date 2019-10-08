@@ -27,24 +27,6 @@ export class AudioItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  onKey(event) {
-    const inputValue = event.target.value;
-    const decode = morsify.decode(inputValue);
-    for (let i = 0; i < decode.length; i++) {
-      if (decode[i] === this.word[i]) {
-        this.score += 1;
-      }
-    }
-    if (this.numberOfItems < 5) {
-      this.word = this.otherItems[this.numberOfItems];
-      this.numberOfItems++;
-    } else {
-      this.visible = false;
-      this.showButton = true;
-    }
-    event.target.value = '';
-  }
-
   playAudio(event, chara) {
     const audio = morsify.audio(chara, { unit: 0.15 });
     audio.play();
