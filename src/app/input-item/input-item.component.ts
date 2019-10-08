@@ -1,3 +1,4 @@
+declare var require: any;
 import { Component, OnInit, Input } from '@angular/core';
 const morsify = require('morsify');
 
