@@ -1,1 +1,8 @@
-<p>audio-instructions works!</p>
+<app-instructions
+    [header]="'Audio Test'"
+    [content]="'Instructions: An audio sequence will play in Morse Code. After the audio is done playing, a prompt will appear. Type the word in English.'"
+></app-instructions>
+<app-button
+    [text]="'Next'"
+    [routerLink]="['/audio-test']"
+></app-button>
