@@ -4,6 +4,7 @@ var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
 var QUESTIONS_COLLECTION = "question";
+var SCORES_COLLECTION = "score";
 
 var app = express();
 app.use(bodyParser.json());
@@ -41,9 +42,11 @@ function handleError(res, reason, message, code) {
   }
   
   /*  "/api/questions"
-   *    GET: returns all question from the db
-   *    Params: question_type=[input,visual,audio,{blank}]
-   *    If blank it will return all the questions.
+   *    GET: returns all question from the db based on the params
+   *    Required Params: 
+   *    question_type=[input,visual,audio]
+   *    round=[0,1,2]
+   *    0 being the pre-test
    */
   app.get("/api/questions", function(req, res) {
     var question_type = req.query.question_type;
@@ -55,5 +58,28 @@ function handleError(res, reason, message, code) {
             res.status(200).json(docs);
         }
     });
-    
+  });
+
+  /*  "/api/scores"
+   *    POST: returns the newly added score 
+   *    Required Params: 
+   *    [question_id,user_id,score_obtained,start_timestamp,end_timestamp]
+   *    Optional Params:
+   *    [wrong_answer]
+   */
+  app.post("/api/scores", function(req, res) {
+    var newScore = req.body;
+    console.log(newScore);
+  
+    if (!newScore.question_id || !newScore.user_id || !newScore.score_obtained || !newScore.start_timestamp || !newScore.end_timestamp) {
+      handleError(res, "Invalid user input", "Missing one of the required fields: [question_id,user_id,score_obtained,start_timestamp,end_timestamp]", 400);
+    } else {
+      db.collection(SCORES_COLLECTION).insertOne(newScore, function(err, doc) {
+        if (err) {
+          handleError(res, err.message, "Failed to add the score.");
+        } else {
+          res.status(201).json(doc.ops[0]);
+        }
+      });
+    }
   });
