@@ -7,14 +7,16 @@ import { StartScreenComponent } from './start-screen/start-screen.component';
 import { InputInstructionsComponent } from './input-instructions/input-instructions.component';
 import { TestInputComponent } from './test-input/test-input.component';
 import { VisualInstructionsComponent } from './visual-instructions/visual-instructions.component';
+import { TestVisualComponent } from './test-visual/test-visual.component';
 
 
 const routes: Routes = [
-  { path: '', component: StartScreenComponent},
+  { path: '', component: StartScreenComponent },
   { path: 'about', component: AboutComponent },
   { path: 'input-instructions', component: InputInstructionsComponent },
   { path: 'input-test', component: TestInputComponent },
   { path: 'visual-instructions', component: VisualInstructionsComponent },
+  { path: 'visual-test', component: TestVisualComponent },
 ];
 
 @NgModule({
