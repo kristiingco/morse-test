@@ -14,6 +14,7 @@ export class InputItemComponent implements OnInit {
   otherItems: Array<string> = ['EARTH', 'DINOS', 'STARE', 'TEASE', 'DARTS'];
   word: string = this.otherItems[0];
   score = 0;
+  showButton = false;
 
   constructor() { }
 
@@ -33,6 +34,7 @@ export class InputItemComponent implements OnInit {
       this.numberOfItems++;
     } else {
       this.visible = false;
+      this.showButton = true;
     }
 
     event.target.value = '';

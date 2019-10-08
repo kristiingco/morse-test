@@ -3,3 +3,10 @@
 <input type="text" (keyup.enter)="onKey($event)">
 </div>
 {{ score }}
+
+<div *ngIf="showButton">
+    <app-button
+    [text]="'Next'"
+    [routerLink]="['/visual-instructions']"
+    ></app-button>
+</div>
