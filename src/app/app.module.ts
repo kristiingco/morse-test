@@ -15,6 +15,8 @@ import { TestInputComponent } from './test-input/test-input.component';
 import { InputItemComponent } from './input-item/input-item.component';
 import { VisualInstructionsComponent } from './visual-instructions/visual-instructions.component';
 import { TestVisualComponent } from './test-visual/test-visual.component';
+import { VisualItemComponent } from './visual-item/visual-item.component';
+import { AudioInstructionsComponent } from './audio-instructions/audio-instructions.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { TestVisualComponent } from './test-visual/test-visual.component';
     TestInputComponent,
     InputItemComponent,
     VisualInstructionsComponent,
-    TestVisualComponent
+    TestVisualComponent,
+    VisualItemComponent,
+    AudioInstructionsComponent
   ],
   imports: [
     BrowserModule,
