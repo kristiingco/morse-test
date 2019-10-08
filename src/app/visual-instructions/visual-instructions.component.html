@@ -1,1 +1,8 @@
-<p>visual-instructions works!</p>
+<app-instructions
+    [header]="'Visual Test'"
+    [content]="'Instructions: The light will flash in a sequence that can be perceived as Morse Code. After the light has finished flashing, a prompt will appear. Type the word in English.'"
+></app-instructions>
+<app-button
+    [text]="'Next'"
+    [routerLink]="['/visual-test']"
+></app-button>
