@@ -5,6 +5,10 @@ Serial myPort;
 int val; //val to be read by port
 int delayTime = 1000;
 
+int firstTrackStart = 1;
+int secondTrackStart = 11;
+int resetValue = -1;
+
 Minim minim;
 AudioSample e,a,r,t,h,d,i,n,o,s;
 
@@ -59,7 +63,7 @@ void setup(){
   o = minim.loadSample("O.mp3");
   s = minim.loadSample("S.mp3");
   
-  val = -1;
+  val = resetValue;
 }
 
 void draw() {
@@ -85,21 +89,21 @@ void draw() {
    if(mouseX>button1X && mouseX <button1X+button1W && mouseY>button1Y && mouseY <button1Y+button1H){
     fill(0);
     firstTrackPlaying = true;
-    val = 1;
+    val = firstTrackStart;
    } else if(mouseX>button2X && mouseX <button2X+button2W && mouseY>button2Y && mouseY <button2Y+button2H){
     fill(0);
     firstTrackPlaying = false;
     myPort.write(-2);
-    val = -1;
+    val = resetValue;
    } else if(mouseX>button3X && mouseX <button3X+button3W && mouseY>button3Y && mouseY <button3Y+button3H){
     fill(0);
     secondTrackPlaying = true;
-    val = 11;
+    val = secondTrackStart;
    } else if(mouseX>button4X && mouseX <button4X+button4W && mouseY>button4Y && mouseY <button4Y+button4H){
     fill(0);
     secondTrackPlaying = false;
     myPort.write(-2);
-    val = -1;
+    val = resetValue;
    }
   } 
   
@@ -108,7 +112,7 @@ void draw() {
   } else if (secondTrackPlaying) {
     secondTrack();
   } else {
-    val = -1;
+    val = resetValue;
   }
   
 }
@@ -118,31 +122,31 @@ void firstTrack(){
     e.trigger();
     delay(delayTime);
     myPort.write(2);
-    val = -1;
+    val = resetValue;
   }
   else if (val == 3){
     a.trigger();
      delay(delayTime);
      myPort.write(4);
-     val = -1;
+     val = resetValue;
   }
   else if (val == 5){
     r.trigger();
      delay(delayTime);
      myPort.write(6);
-     val = -1;
+     val = resetValue;
   }
   else if (val == 7){
     t.trigger();
      delay(delayTime);
      myPort.write(8);
-     val = -1;
+     val = resetValue;
   }
   else if (val == 9){
     h.trigger();
      delay(delayTime);
      myPort.write(10);
-     val = -1;
+     val = resetValue;
   }
 }
 
@@ -151,31 +155,31 @@ void secondTrack(){
     d.trigger();
     delay(delayTime);
     myPort.write(12);
-    val = -1;
+    val = resetValue;
   }
   else if (val == 13){
     i.trigger();
      delay(delayTime);
      myPort.write(14);
-     val = -1;
+     val = resetValue;
   }
   else if (val == 15){
     n.trigger();
      delay(delayTime);
      myPort.write(16);
-     val = -1;
+     val = resetValue;
   }
   else if (val == 17){
     o.trigger();
      delay(delayTime);
      myPort.write(18);
-     val = -1;
+     val = resetValue;
   }
   else if (val == 19){
     s.trigger();
      delay(delayTime);
      myPort.write(20);
-     val = -1;
+     val = resetValue;
   }
 }
 
