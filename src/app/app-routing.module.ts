@@ -8,6 +8,7 @@ import { InputInstructionsComponent } from './input-instructions/input-instructi
 import { TestInputComponent } from './test-input/test-input.component';
 import { VisualInstructionsComponent } from './visual-instructions/visual-instructions.component';
 import { TestVisualComponent } from './test-visual/test-visual.component';
+import { AudioInstructionsComponent } from './audio-instructions/audio-instructions.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'input-test', component: TestInputComponent },
   { path: 'visual-instructions', component: VisualInstructionsComponent },
   { path: 'visual-test', component: TestVisualComponent },
+  { path: 'audio-instructions', component: AudioInstructionsComponent },
 ];
 
 @NgModule({
