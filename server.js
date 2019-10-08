@@ -41,16 +41,19 @@ function handleError(res, reason, message, code) {
   }
   
   /*  "/api/questions"
-   *    GET: returns all question for a type
-   *    POST: creates a new contact
+   *    GET: returns all question from the db
+   *    Params: question_type=[input,visual,audio,{blank}]
+   *    If blank it will return all the questions.
    */
-  
   app.get("/api/questions", function(req, res) {
-    db.collection(QUESTIONS_COLLECTION).find({}).toArray(function(err, docs) {
+    var question_type = req.query.question_type;
+    var round = req.query.round;
+    db.collection(QUESTIONS_COLLECTION).find({type: question_type, round: round}).toArray(function(err, docs) {
         if (err) {
-          handleError(res, err.message, "Failed to get questions.");
+            handleError(res, err.message, "Failed to get questions.");
         } else {
-          res.status(200).json(docs);
+            res.status(200).json(docs);
         }
-      });
+    });
+    
   });
