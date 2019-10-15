@@ -28,7 +28,7 @@ export class AudioItemComponent implements OnInit {
   }
 
   playAudio(event, chara) {
-    const audio = morsify.audio(chara, { unit: 0.15 });
+    const audio = morsify.audio(chara, { unit: 0.171 });
     audio.play();
   }
 
