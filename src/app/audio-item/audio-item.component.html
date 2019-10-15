@@ -1,0 +1,42 @@
+<div style="margin: 0 auto; width: 500px;"  *ngIf="visible">
+    <div style="width:50px; display: inline-block;">
+        <input type="text" maxlength="1" [formControl]="letter1">
+        <span (click)="playAudio($event, word[0])">&nbsp; &#9658;</span>
+    </div> 
+    <span>&nbsp; &nbsp; &nbsp;</span>
+    <div style="width:50px; display: inline-block;">
+        <input type="text" maxlength="1" [formControl]="letter2">
+        <span (click)="playAudio($event, word[1])">&nbsp; &#9658;</span>
+    </div>
+    <span>&nbsp; &nbsp; &nbsp;</span>
+    <div style="width:50px; display: inline-block;">
+        <input type="text" maxlength="1" [formControl]="letter3">
+        <span (click)="playAudio($event, word[2])">&nbsp; &#9658;</span>
+    </div>
+    <span>&nbsp; &nbsp; &nbsp;</span>
+    <div style="width:50px; display: inline-block;">
+        <input type="text" maxlength="1" [formControl]="letter4">
+        <span (click)="playAudio($event, word[3])">&nbsp; &#9658;</span>
+    </div>
+    <span>&nbsp; &nbsp; &nbsp;</span>
+    <div style="width:50px; display: inline-block;">
+        <input type="text" maxlength="1" [formControl]="letter5">
+        <span (click)="playAudio($event,  word[4])">&nbsp; &#9658;</span>
+    </div>
+    
+</div>
+{{ score }}
+
+<div *ngIf="visible">
+    <app-button
+    [text]="'Next'"
+    (click)="nextWord($event)"
+    ></app-button>
+</div>
+
+<div *ngIf="showButton">
+    <app-button
+    [text]="'Finish'"
+    ></app-button>
+</div>
+

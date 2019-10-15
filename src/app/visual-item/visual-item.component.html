@@ -1,0 +1,42 @@
+<div style="margin: 0 auto; width: 500px;"  *ngIf="visible">
+    <div style="width:50px; display: inline-block;">
+        <input type="text" maxlength="1" [formControl]="letter1">
+        <img (click)="transmit($event, word[0], 1)" id = "flashlight1" src="assets/OffLight.png">
+    </div> 
+    <span>&nbsp; &nbsp; &nbsp;</span>
+    <div style="width:50px; display: inline-block;">
+        <input type="text" maxlength="1" [formControl]="letter2">
+        <img (click)="transmit($event, word[1], 2)" id = "flashlight2" src="assets/OffLight.png">
+    </div>
+    <span>&nbsp; &nbsp; &nbsp;</span>
+    <div style="width:50px; display: inline-block;">
+        <input type="text" maxlength="1" [formControl]="letter3">
+        <img (click)="transmit($event, word[2], 3)" id = "flashlight3" src="assets/OffLight.png">
+    </div>
+    <span>&nbsp; &nbsp; &nbsp;</span>
+    <div style="width:50px; display: inline-block;">
+        <input type="text" maxlength="1" [formControl]="letter4">
+        <img (click)="transmit($event, word[3], 4)" id = "flashlight4" src="assets/OffLight.png">
+    </div>
+    <span>&nbsp; &nbsp; &nbsp;</span>
+    <div style="width:50px; display: inline-block;">
+        <input type="text" maxlength="1" [formControl]="letter5">
+        <img (click)="transmit($event, word[4], 5)" id = "flashlight5" src="assets/OffLight.png">
+    </div>
+    
+</div>
+{{ score }}
+
+<div *ngIf="visible">
+    <app-button
+    [text]="'Next'"
+    (click)="nextWord($event)"
+    ></app-button>
+</div>
+
+<div *ngIf="showButton">
+    <app-button
+    [text]="'Finish'"
+    ></app-button>
+</div>
+
