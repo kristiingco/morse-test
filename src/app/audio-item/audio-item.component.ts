@@ -1,6 +1,8 @@
 declare var require: any;
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { QuestionService } from '../question.service';
+
 const morsify = require('morsify');
 
 @Component({
@@ -17,14 +19,19 @@ export class AudioItemComponent implements OnInit {
   letter5 = new FormControl('');
   @Input() visible: boolean;
   numberOfItems = 1;
+  items = [];
   otherItems: Array<string> = ['EARTH', 'DINOS', 'STARE', 'TEASE', 'DARTS'];
   word: string = this.otherItems[0];
   score = 0;
   showButton = false;
 
-  constructor() { }
+  constructor(private questionService: QuestionService) { }
 
   ngOnInit() {
+    this.questionService.getAudioQuestions().subscribe((data: any[]) => {
+      console.log(data);
+      this.items = [];
+    })
   }
 
   playAudio(event, chara) {
