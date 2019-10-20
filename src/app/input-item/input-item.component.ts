@@ -1,5 +1,6 @@
 declare var require: any;
 import { Component, OnInit, Input } from '@angular/core';
+import { QuestionService } from '../question.service';
 const morsify = require('morsify');
 
 @Component({
@@ -11,14 +12,20 @@ export class InputItemComponent implements OnInit {
 
   @Input() visible: boolean;
   numberOfItems = 1;
-  otherItems: Array<string> = ['EARTH', 'DINOS', 'STARE', 'TEASE', 'DARTS'];
-  word: string = this.otherItems[0];
+  items = [];
+  word: string = this.items[0];
   score = 0;
   showButton = false;
 
-  constructor() { }
+  constructor(private questionService: QuestionService) { }
 
   ngOnInit() {
+    this.questionService.getInputQuestions().subscribe((data: any[]) => {
+      console.log(data);
+      this.items = data;
+      this.word = this.items[0].question;
+      console.log(this.word);
+    });
   }
 
   onKey(event) {
@@ -29,8 +36,8 @@ export class InputItemComponent implements OnInit {
         this.score += 1;
       }
     }
-    if (this.numberOfItems < 5) {
-      this.word = this.otherItems[this.numberOfItems];
+    if (this.numberOfItems < this.items.length) {
+      this.word = this.items[this.numberOfItems].question;
       this.numberOfItems++;
     } else {
       this.visible = false;
