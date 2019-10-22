@@ -1,6 +1,9 @@
 <div style="text-align: center"  *ngIf="visible">
-<h1>{{ word }}</h1>
-<input type="text" (keyup.enter)="onKey($event)">
+    <div *ngFor="let letter of word.split('');" style="display: inline;">
+        <h1 style="display: inline; font-size: 40px;" [ngClass]="{'active': currentLetter == letter}">{{ letter }}</h1>
+    </div>
+    <br>
+    <input type="text" (keyup.enter)="onKey($event)" style="width: 125px; margin-left: -20px;">
 </div>
 {{ score }}
 
