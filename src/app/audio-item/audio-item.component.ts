@@ -68,21 +68,25 @@ export class AudioItemComponent implements OnInit {
 
     const values = [this.letter1.value, this.letter2.value, this.letter3.value, this.letter4.value, this.letter5.value];
 
+  
+
     const data = {
       question_id: this.items[this.numberOfItems - 1]._id,
       user_id: 1, // alter after login api
-      score_obtained: this.score,
+      score_obtained: this.score.toString(),
       wrong_answer: (this.score !== this.word.length ? values.join('') : null),
-      start_timestap: this.startTime,
+      start_timestamp: this.startTime,
       end_timestamp: new Date().toLocaleTimeString()
     };
+
+    console.log(data);
 
     this.startTime = new Date().toLocaleTimeString();
 
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
 
     this.httpClient.post<any>('https://morse-test.herokuapp.com/api/scores', JSON.stringify(data), {headers})
-      .subscribe(res => console.log(res.json()));
+      .subscribe(res => console.log(res));
 
     if (this.numberOfItems < this.items.length) {
       this.word = this.items[this.numberOfItems].question;
