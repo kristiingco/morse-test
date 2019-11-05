@@ -1,3 +1,4 @@
+<span style="font-size: 30px;" *ngIf="visible">{{ numberOfItems }}</span>
 <div style="text-align: center"  *ngIf="visible">
     <div *ngFor="let letter of word.split('');" style="display: inline;">
         <h1 style="display: inline; font-size: 40px;" [ngClass]="{'active': currentLetter == letter}">{{ letter }}</h1>

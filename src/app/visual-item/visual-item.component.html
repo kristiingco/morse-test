@@ -1,3 +1,4 @@
+<span style="font-size: 30px;" *ngIf="visible">{{ numberOfItems }}</span>
 <div style="margin: 0 auto; width: 500px;"  *ngIf="visible">
     <div *ngFor="let letter of word.split(''); let i = index" style="display: inline;">
         <div style="width:50px; display: inline-block;">
