@@ -68,8 +68,6 @@ export class AudioItemComponent implements OnInit {
 
     const values = [this.letter1.value, this.letter2.value, this.letter3.value, this.letter4.value, this.letter5.value];
 
-  
-
     const data = {
       question_id: this.items[this.numberOfItems - 1]._id,
       user_id: 1, // alter after login api
