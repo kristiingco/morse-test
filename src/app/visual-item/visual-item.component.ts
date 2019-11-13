@@ -83,27 +83,27 @@ export class VisualItemComponent implements OnInit {
   }
 
   nextWord(event) {
-    if (this.word[0] === this.letter1.value) {
+    if (this.word[0] === this.letter1.value.toUpperCase()) {
       this.score += 1;
     }
 
-    if (this.word[1] === this.letter2.value) {
+    if (this.word[1] === this.letter2.value.toUpperCase()) {
       this.score += 1;
     }
 
-    if (this.word[2] === this.letter3.value) {
+    if (this.word[2] === this.letter3.value.toUpperCase()) {
       this.score += 1;
     }
 
-    if (this.word[3] === this.letter4.value) {
+    if (this.word[3] === this.letter4.value.toUpperCase()) {
       this.score += 1;
     }
 
-    if (this.word[4] === this.letter5.value) {
+    if (this.word[4] === this.letter5.value.toUpperCase()) {
       this.score += 1;
     }
 
-    const values = [this.letter1.value, this.letter2.value, this.letter3.value, this.letter4.value, this.letter5.value];
+    const values = [this.letter1.value.toUpperCase(), this.letter2.value.toUpperCase(), this.letter3.value.toUpperCase(), this.letter4.value.toUpperCase(), this.letter5.value.toUpperCase()];
 
     const data = {
       question_id: this.items[this.numberOfItems - 1]._id,
