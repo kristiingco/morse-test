@@ -1,5 +1,5 @@
 <span style="font-size: 30px;" *ngIf="visible">{{ numberOfItems }}</span>
-<div style="margin: 0 auto; width: 500px;"  *ngIf="visible">
+<div class="container" style="margin: 0 auto; width: 500px;" *ngIf="visible">
     <div *ngFor="let letter of word.split(''); let i = index" style="display: inline;">
         <div style="width:50px; display: inline-block;">
             <input type="text" maxlength="1" [formControl]="letters[i]">
@@ -19,6 +19,15 @@
 <div *ngIf="showButton">
     <app-button
     [text]="'Finish'"
+    [routerLink]="['/finish']"
     ></app-button>
 </div>
 
+<script>
+    $("input").bind("input", function() {
+        var $this = $(this);
+        setTimeout(function() {
+            if ( $this.val().length >= parseInt($this.attr("maxlength"), 1) )
+                $this.next("input").focus();
+        },0);
+    });</script>
