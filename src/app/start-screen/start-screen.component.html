@@ -1,11 +1,17 @@
 <div>
 <app-main-title [text]="'Morse Test'"></app-main-title>
 <app-button
-    [text]="'Start'"
-    [routerLink]="['/input-instructions']"
-></app-button>
-<app-button
     [text]="'About'"
     [routerLink]="['/about']"
 ></app-button>
+
+<div style="display:block;">
+    <span>Sign in to start</span>
+    <input type="text" [formControl]="userId">
+    <input type="password" [formControl]="password">
+    <app-button
+        [text]="'Login'"
+        (click)="logIn()"
+    ></app-button>
+</div>
 </div>
