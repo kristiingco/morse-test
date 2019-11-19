@@ -1,8 +1,8 @@
 declare var require: any;
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { QuestionService } from '../question.service';
 const morsify = require('morsify');
-
 
 @Component({
   selector: 'app-visual-item',
@@ -16,17 +16,25 @@ export class VisualItemComponent implements OnInit {
   letter3 = new FormControl('');
   letter4 = new FormControl('');
   letter5 = new FormControl('');
+  letters = [this.letter1, this.letter2, this.letter3, this.letter4, this.letter5];
+  flashlights = ['flashlight1', 'flashlight2', 'flashlight3', 'flashlight4', 'flashlight5'];
   @Input() visible: boolean;
   numberOfItems = 1;
-  otherItems: Array<string> = ['EARTH', 'DINOS', 'STARE', 'TEASE', 'DARTS'];
-  word: string = this.otherItems[0];
+  items = [];
+  word: string;
   score = 0;
   showButton = false;
   element: HTMLImageElement;
 
-  constructor() { }
+  constructor(private questionService: QuestionService) { }
 
   ngOnInit() {
+    this.questionService.getVisualQuestions().subscribe((data: any[]) => {
+      console.log(data);
+      this.items = data;
+      this.word = this.items[0].question;
+      console.log(this.word);
+    });
   }
 
   async transmit(event, chara, num) {
@@ -97,8 +105,9 @@ export class VisualItemComponent implements OnInit {
     this.letter4.setValue('');
     this.letter5.setValue('');
 
-    if (this.numberOfItems < 5) {
-      this.word = this.otherItems[this.numberOfItems];
+    if (this.numberOfItems < this.items.length) {
+      this.word = this.items[this.numberOfItems].question;
+      console.log(this.word);
       this.numberOfItems++;
     } else {
       this.visible = false;

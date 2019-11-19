@@ -7,6 +7,16 @@ input {
     width: 300px;
     color: white;
     font-family: 'Andika';
-    font-size: 40px;
+    font-size: 30px;
     outline: 0;
+    text-align: center;
+}
+
+h1 {
+    padding: 5px 20px;
+}
+
+.active {
+    background: #faed27;
+    color: black;
 }

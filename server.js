@@ -2,18 +2,26 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
+var cors = require('cors');
 
 var QUESTIONS_COLLECTION = "question";
 var SCORES_COLLECTION = "score";
 
 var app = express();
-app.use(bodyParser.json());
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
+app.use(express.json());       // to support JSON-encoded bodies
+app.use(express.urlencoded()); // to support URL-encoded bodies
 
 var distDir = __dirname + "/dist/";
  app.use(express.static(distDir));
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
+
+app.use(cors({origin: '*'}));
 
 // Connect to the database before starting the application server.
 mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://salmon:sashimi1@ds331558.mlab.com:31558/heroku_www30lwf", function (err, client) {
@@ -27,7 +35,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://salmon:sashimi
   console.log("Database connection ready");
 
   // Initialize the app.
-  var server = app.listen(process.env.PORT || 8080, function () {
+  var server = app.listen(process.env.PORT || 4200, function () {
     var port = server.address().port;
     console.log("App now running on port", port);
   });
@@ -68,6 +76,7 @@ function handleError(res, reason, message, code) {
    *    [wrong_answer]
    */
   app.post("/api/scores", function(req, res) {
+    console.log(req.body);
     var newScore = req.body;
     console.log(newScore);
   
