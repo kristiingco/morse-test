@@ -6,6 +6,7 @@ var cors = require('cors');
 
 var QUESTIONS_COLLECTION = "question";
 var SCORES_COLLECTION = "score";
+var USERS_COLLECTION = "user";
 
 var app = express();
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
@@ -90,5 +91,26 @@ function handleError(res, reason, message, code) {
           res.status(201).json(doc.ops[0]);
         }
       });
+    }
+  });
+
+  /*  "/api/login"
+   *    POST: returns the id of the user if success
+   *    Required Params: 
+   *    [user_id, password]
+   */
+  app.post("/api/login", async function(req, res) {
+    var user = req.body;
+    var user_id = user.user_id;
+    var password = user.password;
+    if (!user_id || !password) {
+      handleError(res, "Invalid user input", "Missing one of the required fields: [user_id, password]", 400);
+    } else {
+      var userObject = await db.collection(USERS_COLLECTION).findOne({user_id: user_id});
+      if (userObject.password == password){
+        res.status(200).json({user_id: user_id});
+      } else {
+        handleError(res, "Failed to login", "Invalid username or password");
+      }
     }
   });
