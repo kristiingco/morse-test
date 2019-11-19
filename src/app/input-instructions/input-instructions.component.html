@@ -12,8 +12,9 @@
 </div>
 <span style="font-size: 25px; margin-left: 585px;" *ngIf="!visible">
     You're ready to take the test!
+    <app-button
+        [text]="'Take Test'"
+        [routerLink]="['/input-test']"
+>   </app-button>
 </span>
-<app-button
-    [text]="'Next'"
-    [routerLink]="['/input-test']"
-></app-button>
+
