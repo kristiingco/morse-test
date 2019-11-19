@@ -46,43 +46,45 @@ export class AudioItemComponent implements OnInit {
   }
 
   nextWord(event) {
-    if (this.word[0] === this.letter1.value) {
+    if (this.word[0] === this.letter1.value.toUpperCase()) {
       this.score += 1;
     }
 
-    if (this.word[1] === this.letter2.value) {
+    if (this.word[1] === this.letter2.value.toUpperCase()) {
       this.score += 1;
     }
 
-    if (this.word[2] === this.letter3.value) {
+    if (this.word[2] === this.letter3.value.toUpperCase()) {
       this.score += 1;
     }
 
-    if (this.word[3] === this.letter4.value) {
+    if (this.word[3] === this.letter4.value.toUpperCase()) {
       this.score += 1;
     }
 
-    if (this.word[4] === this.letter5.value) {
+    if (this.word[4] === this.letter5.value.toUpperCase()) {
       this.score += 1;
     }
 
-    const values = [this.letter1.value, this.letter2.value, this.letter3.value, this.letter4.value, this.letter5.value];
+    const values = [this.letter1.value.toUpperCase(), this.letter2.value.toUpperCase(), this.letter3.value.toUpperCase(), this.letter4.value.toUpperCase(), this.letter5.value.toUpperCase()];
 
     const data = {
       question_id: this.items[this.numberOfItems - 1]._id,
       user_id: 1, // alter after login api
-      score_obtained: this.score,
+      score_obtained: this.score.toString(),
       wrong_answer: (this.score !== this.word.length ? values.join('') : null),
-      start_timestap: this.startTime,
+      start_timestamp: this.startTime,
       end_timestamp: new Date().toLocaleTimeString()
     };
+
+    console.log(data);
 
     this.startTime = new Date().toLocaleTimeString();
 
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
 
     this.httpClient.post<any>('https://morse-test.herokuapp.com/api/scores', JSON.stringify(data), {headers})
-      .subscribe(res => console.log(res.json()));
+      .subscribe(res => console.log(res));
 
     if (this.numberOfItems < this.items.length) {
       this.word = this.items[this.numberOfItems].question;

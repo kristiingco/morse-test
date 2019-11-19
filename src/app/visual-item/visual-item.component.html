@@ -1,3 +1,4 @@
+<span style="font-size: 30px;" *ngIf="visible">{{ numberOfItems }}</span>
 <div style="margin: 0 auto; width: 500px;"  *ngIf="visible">
     <div *ngFor="let letter of word.split(''); let i = index" style="display: inline;">
         <div style="width:50px; display: inline-block;">
@@ -7,7 +8,6 @@
         <span>&nbsp; &nbsp; &nbsp;</span>
     </div>
 </div>
-{{ score }}
 
 <div *ngIf="visible">
     <app-button
@@ -19,6 +19,7 @@
 <div *ngIf="showButton">
     <app-button
     [text]="'Finish'"
+    [routerLink]="['/audio-instructions']"
     ></app-button>
 </div>
 

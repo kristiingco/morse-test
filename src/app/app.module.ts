@@ -21,6 +21,7 @@ import { AudioInstructionsComponent } from './audio-instructions/audio-instructi
 import { TestAudioComponent } from './test-audio/test-audio.component';
 import { AudioItemComponent } from './audio-item/audio-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FinishComponent } from './finish/finish.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     VisualItemComponent,
     AudioInstructionsComponent,
     TestAudioComponent,
-    AudioItemComponent
+    AudioItemComponent,
+    FinishComponent
   ],
   imports: [
     BrowserModule,

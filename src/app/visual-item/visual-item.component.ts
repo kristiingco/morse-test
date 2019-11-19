@@ -2,6 +2,8 @@ declare var require: any;
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { QuestionService } from '../question.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 const morsify = require('morsify');
 
 @Component({
@@ -25,8 +27,10 @@ export class VisualItemComponent implements OnInit {
   score = 0;
   showButton = false;
   element: HTMLImageElement;
+  startTime = new Date().toLocaleTimeString();
+  endTime;
 
-  constructor(private questionService: QuestionService) { }
+  constructor(private questionService: QuestionService, private httpClient: HttpClient) { }
 
   ngOnInit() {
     this.questionService.getVisualQuestions().subscribe((data: any[]) => {
@@ -79,24 +83,52 @@ export class VisualItemComponent implements OnInit {
   }
 
   nextWord(event) {
-    if (this.word[0] === this.letter1.value) {
+    if (this.word[0] === this.letter1.value.toUpperCase()) {
       this.score += 1;
     }
 
-    if (this.word[1] === this.letter2.value) {
+    if (this.word[1] === this.letter2.value.toUpperCase()) {
       this.score += 1;
     }
 
-    if (this.word[2] === this.letter3.value) {
+    if (this.word[2] === this.letter3.value.toUpperCase()) {
       this.score += 1;
     }
 
-    if (this.word[3] === this.letter4.value) {
+    if (this.word[3] === this.letter4.value.toUpperCase()) {
       this.score += 1;
     }
 
-    if (this.word[4] === this.letter5.value) {
+    if (this.word[4] === this.letter5.value.toUpperCase()) {
       this.score += 1;
+    }
+
+    const values = [this.letter1.value.toUpperCase(), this.letter2.value.toUpperCase(), this.letter3.value.toUpperCase(), this.letter4.value.toUpperCase(), this.letter5.value.toUpperCase()];
+
+    const data = {
+      question_id: this.items[this.numberOfItems - 1]._id,
+      user_id: 1, // alter after login api
+      score_obtained: this.score.toString(),
+      wrong_answer: (this.score !== this.word.length ? values.join('') : null),
+      start_timestamp: this.startTime,
+      end_timestamp: new Date().toLocaleTimeString()
+    };
+
+    this.startTime = new Date().toLocaleTimeString();
+
+    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+
+    this.httpClient.post<any>('https://morse-test.herokuapp.com/api/scores', JSON.stringify(data), {headers})
+      .subscribe(res => console.log(res));
+
+    if (this.numberOfItems < this.items.length) {
+      this.word = this.items[this.numberOfItems].question;
+      this.numberOfItems++;
+      console.log(this.word);
+      this.score = 0;
+    } else {
+      this.visible = false;
+      this.showButton = true;
     }
 
     this.letter1.setValue('');
@@ -104,15 +136,6 @@ export class VisualItemComponent implements OnInit {
     this.letter3.setValue('');
     this.letter4.setValue('');
     this.letter5.setValue('');
-
-    if (this.numberOfItems < this.items.length) {
-      this.word = this.items[this.numberOfItems].question;
-      console.log(this.word);
-      this.numberOfItems++;
-    } else {
-      this.visible = false;
-      this.showButton = true;
-    }
 
   }
 

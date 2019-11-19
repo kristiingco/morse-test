@@ -1,0 +1,22 @@
+@import "../../assets/variables";
+
+input {
+    background: none;
+    border: 0;
+    border-bottom: 3px solid $secondary-color;
+    width: 300px;
+    color: white;
+    font-family: 'Andika';
+    font-size: 30px;
+    outline: 0;
+    text-align: center;
+}
+
+h1 {
+    padding: 5px 20px;
+}
+
+.active {
+    background: #faed27;
+    color: black;
+}
