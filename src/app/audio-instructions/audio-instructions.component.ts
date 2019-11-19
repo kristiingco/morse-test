@@ -1,4 +1,8 @@
+declare var require: any;
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+
+const morsify = require('morsify');
 
 @Component({
   selector: 'app-audio-instructions',
@@ -7,9 +11,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AudioInstructionsComponent implements OnInit {
 
+  letter1 = new FormControl('');
+  letter2 = new FormControl('');
+  letters = [this.letter1, this.letter2];
+  visible = true;
+  numberOfItems = 1;
+  items = ['DO', 'EA'];
+  word: string = this.items[0];
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  playAudio(event, chara) {
+    const audio = morsify.audio(chara, { unit: 0.171 });
+    audio.play();
+  }
+
+  nextWord(event) {
+    if (this.numberOfItems < this.items.length) {
+      this.word = this.items[this.numberOfItems];
+      this.numberOfItems++;
+    } else {
+      this.visible = false;
+    }
+
+    this.letter1.setValue('');
+    this.letter2.setValue('');
   }
 
 }

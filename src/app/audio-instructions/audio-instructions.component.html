@@ -2,7 +2,24 @@
     [header]="'Audio Test'"
     [content]="'Instructions: Each input box displayed has a play button underneath. Click on one to play an audio sequence in Morse Code. In its corresponding input box, type its English letter equivalent.'"
 ></app-instructions>
-<app-button
-    [text]="'Next'"
-    [routerLink]="['/audio-test']"
-></app-button>
+<div class="container" style="margin: 0 auto; width: 500px;" *ngIf="visible">
+    <span style="font-size:20px;">Try it out:</span><br><br>
+    <div *ngFor="let letter of word.split(''); let i = index" style="display: inline;">
+        <div style="width:50px; display: inline-block;">
+            <input type="text" maxlength="1" [formControl]="letters[i]">
+            <span (click)="playAudio($event, letter)">&nbsp; &#9658;</span>
+        </div> 
+        <span>&nbsp; &nbsp; &nbsp;</span>
+    </div>
+    <app-button
+        [text]="'Next'"
+        (click)="nextWord()"
+    ></app-button>
+</div>
+<span style="font-size: 25px; margin-left: 585px;" *ngIf="!visible">
+    You're ready to take the test!
+    <app-button
+        [text]="'Take Test'"
+        [routerLink]="['/audio-test']"
+    ></app-button>
+</span>

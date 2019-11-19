@@ -1,6 +1,6 @@
 <app-instructions
     [header]="'Input Test'"
-    [content]="'Instructions: Letters in English will appear on the screen. In the prompt, type in the Morse Code equivalent of the highlighted letter using the spacebar. Simply pressing the spacebar will result to a short/dot (.) while holding the spacebar will result to a line/dash (-).'"
+    [content]="'Instructions: Letters in English will appear on the screen. In the prompt, type in the Morse Code equivalent of the highlighted letter using the spacebar. Press enter to submit your answer. Simply pressing the spacebar will result to a short/dot (.) while holding the spacebar will result to a line/dash (-).'"
 ></app-instructions>
 <div style="text-align: center;" *ngIf="visible">
     <span style="font-size:20px;">Try it out:</span><br><br>
@@ -12,8 +12,9 @@
 </div>
 <span style="font-size: 25px; margin-left: 585px;" *ngIf="!visible">
     You're ready to take the test!
+    <app-button
+        [text]="'Take Test'"
+        [routerLink]="['/input-test']"
+>   </app-button>
 </span>
-<app-button
-    [text]="'Next'"
-    [routerLink]="['/input-test']"
-></app-button>
+
