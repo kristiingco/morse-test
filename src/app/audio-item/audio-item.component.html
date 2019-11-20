@@ -19,15 +19,8 @@
 <div *ngIf="showButton">
     <app-button
     [text]="'Finish'"
+    (click)="logOut()"
     [routerLink]="['/finish']"
     ></app-button>
 </div>
 
-<script>
-    $("input").bind("input", function() {
-        var $this = $(this);
-        setTimeout(function() {
-            if ( $this.val().length >= parseInt($this.attr("maxlength"), 1) )
-                $this.next("input").focus();
-        },0);
-    });</script>

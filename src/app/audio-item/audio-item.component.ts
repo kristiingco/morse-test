@@ -105,4 +105,8 @@ export class AudioItemComponent implements OnInit {
 
   }
 
+  logOut() {
+    localStorage.clear();
+  }
+
 }
