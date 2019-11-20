@@ -7,7 +7,7 @@
     <div *ngFor="let letter of word.split(''); let i = index" style="display: inline;">
         <div style="width:50px; display: inline-block;">
             <input type="text" maxlength="1" [formControl]="letters[i]">
-            <img (click)="transmit($event, letter, i)" id = "{{ 'flashlight' + i }}" src="assets/OffLight.png">
+            <img (click)="transmit($event, letter, i)" id = "{{ 'flashlight' + i }}" src="https://i.imgur.com/g7PUAYI.png">
         </div> 
         <span>&nbsp; &nbsp; &nbsp;</span>
     </div>
@@ -23,3 +23,4 @@
         [routerLink]="['/visual-test']"
     ></app-button>
 </span>
+<app-log-out-button></app-log-out-button>

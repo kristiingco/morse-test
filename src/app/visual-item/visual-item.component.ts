@@ -57,17 +57,17 @@ export class VisualItemComponent implements OnInit {
     for (const morseChara of morse) {
       if (morseChara === '.') {
         // dot --modified
-        await this.flashlight('assets/OnLight.png', 0, num);
+        await this.flashlight('https://i.imgur.com/3sJr50R.png', 0, num);
         // show white light to show when flash is finished
-        await this.flashlight('assets/OffLight.png', dot, num);
+        await this.flashlight('https://i.imgur.com/g7PUAYI.png', dot, num);
       } else {
         // dash at 3 X 60 or 180 --modified
-        await this.flashlight('assets/OnLight.png', 0, num);
+        await this.flashlight('https://i.imgur.com/3sJr50R.png', 0, num);
         // show white light to show when flash is finished
-        await this.flashlight('assets/OffLight.png', dash, num);
+        await this.flashlight('https://i.imgur.com/g7PUAYI.png', dash, num);
       }
       //pause after each dot or dash --i added
-      await this.flashlight('assets/OffLight.png', dot * 2, num);
+      await this.flashlight('https://i.imgur.com/g7PUAYI.png', dot * 2, num);
     }
   }
 
