@@ -68,11 +68,11 @@ export class AudioItemComponent implements OnInit {
 
     const values = [this.letter1.value.toUpperCase(), this.letter2.value.toUpperCase(), this.letter3.value.toUpperCase(), this.letter4.value.toUpperCase(), this.letter5.value.toUpperCase()];
 
-    let num = 1;
+    let userId = localStorage.getItem('user_id');
 
     const data = {
       question_id: this.items[this.numberOfItems - 1]._id,
-      user_id: num.toString(), // alter after login api
+      user_id: userId.toString(), // alter after login api
       score_obtained: this.score.toString(),
       wrong_answer: (this.score !== this.word.length ? values.join('') : null),
       start_timestamp: this.startTime,
