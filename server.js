@@ -95,7 +95,7 @@ function handleError(res, reason, message, code) {
   });
 
   /*  "/api/login"
-   *    POST: returns the id of the user if success
+   *    POST: returns the id of the user, question_id of the first question that they haven't answered
    *    Required Params: 
    *    [user_id, password]
    */
@@ -108,7 +108,23 @@ function handleError(res, reason, message, code) {
     } else {
       var userObject = await db.collection(USERS_COLLECTION).findOne({user_id: user_id});
       if (userObject.password == password){
-        res.status(200).json({user_id: user_id});
+        //search scores collection for the latest question the user answered
+        //so user can continue where they left off if they accidentally exit
+        db.collection(SCORES_COLLECTION).find({user_id: user_id}).count(function (err, count) {
+          if (!err && count !== 0) {
+            db.collection(SCORES_COLLECTION).find({user_id: user_id}).sort({question_id:-1}).limit(1)
+            .toArray(function(err, docs) {
+              if (!err) {
+                console.log(docs);
+                var question_id = parseInt(docs[0].question_id) + 1;
+                console.log(question_id);
+                res.status(200).json({user_id: user_id, question_id: question_id.toString()});
+              }
+            });
+          } else {
+            res.status(200).json({user_id: user_id, question_id: "1"});
+          }
+        });
       } else {
         handleError(res, "Failed to login", "Invalid username or password");
       }
