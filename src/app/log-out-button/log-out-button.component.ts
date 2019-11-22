@@ -12,4 +12,8 @@ export class LogOutButtonComponent implements OnInit {
   ngOnInit() {
   }
 
+  logOut() {
+    localStorage.clear();
+  }
+
 }
