@@ -106,7 +106,7 @@ function handleError(res, reason, message, code) {
     if (!user_id || !password) {
       handleError(res, "Invalid user input", "Missing one of the required fields: [user_id, password]", 400);
     } else {
-      var doesUserExist = await db.collection(USERS_COLLECTION).find({user_id: { "$in": user_id}}).count() > 0;
+      var doesUserExist = await db.collection(USERS_COLLECTION).find({user_id: user_id}).count() > 0;
       if (doesUserExist) {
         var userObject = await db.collection(USERS_COLLECTION).find({user_id: user_id}).limit(1);
         if (userObject.password == password){
