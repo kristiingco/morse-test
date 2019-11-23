@@ -99,7 +99,7 @@ function handleError(res, reason, message, code) {
    *    Required Params: 
    *    [user_id, password]
    */
-  app.post("/api/login", async function(req, res) {
+  app.post("/api/login", function(req, res) {
     var user = req.body;
     var user_id = user.user_id;
     var password = user.password;
