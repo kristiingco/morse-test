@@ -107,6 +107,11 @@ function handleError(res, reason, message, code) {
       handleError(res, "Invalid user input", "Missing one of the required fields: [user_id, password]", 400);
     } else {
       var userObject = await db.collection(USERS_COLLECTION).findOne({user_id: user_id});
+
+      if (userObject.count() > 0) {
+        handleError(res, "Invalid user input", "Does not exist", 400);
+      }
+      
       if (userObject.password == password){
         //search scores collection for the latest question the user answered
         //so user can continue where they left off if they accidentally exit
@@ -126,7 +131,7 @@ function handleError(res, reason, message, code) {
           }
         });
       } else {
-        handleError(res, "Failed to login", "Invalid username or password");
+        handleError(res, "Failed to login", "Invalid username or password", 400);
       }
     }
   });
