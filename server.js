@@ -112,6 +112,8 @@ function handleError(res, reason, message, code) {
         handleError(res, "Failed to login", "Invalid username or password", 400);
       }
       else {
+        console.log(userObject.password);
+        console.log(password);
         if (userObject.password == password){
           //search scores collection for the latest question the user answered
           //so user can continue where they left off if they accidentally exit
