@@ -35,7 +35,13 @@ export class AudioItemComponent implements OnInit {
     this.questionService.getAudioQuestions().subscribe((data: any[]) => {
       console.log(data);
       this.items = data;
-      this.word = this.items[0].question;
+      const currentQuestion = localStorage.getItem('question_id');
+      if ([6].includes(parseInt(currentQuestion))) {
+        this.word = this.items[this.numberOfItems].question;
+        this.numberOfItems++;
+      } else {
+        this.word = this.items[0].question;
+      }
       console.log(this.word);
     });
   }
@@ -90,9 +96,11 @@ export class AudioItemComponent implements OnInit {
 
     if (this.numberOfItems < this.items.length) {
       this.word = this.items[this.numberOfItems].question;
+      localStorage.setItem('question_id', this.items[this.numberOfItems]._id);
       this.numberOfItems++;
       this.score = 0;
     } else {
+      localStorage.setItem('question_id', (localStorage.getItem('question_id') + 1));
       this.visible = false;
       this.showButton = true;
     }

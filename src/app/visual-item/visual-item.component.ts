@@ -36,6 +36,13 @@ export class VisualItemComponent implements OnInit {
     this.questionService.getVisualQuestions().subscribe((data: any[]) => {
       console.log(data);
       this.items = data;
+      const currentQuestion = localStorage.getItem('question_id');
+      if ([4].includes(parseInt(currentQuestion))) {
+        this.word = this.items[this.numberOfItems].question;
+        this.numberOfItems++;
+      } else {
+        this.word = this.items[0].question;
+      }
       this.word = this.items[0].question;
       console.log(this.word);
     });
@@ -125,10 +132,12 @@ export class VisualItemComponent implements OnInit {
 
     if (this.numberOfItems < this.items.length) {
       this.word = this.items[this.numberOfItems].question;
+      localStorage.setItem('question_id', this.items[this.numberOfItems]._id);
       this.numberOfItems++;
       console.log(this.word);
       this.score = 0;
     } else {
+      localStorage.setItem('question_id', (localStorage.getItem('question_id') + 1));
       this.visible = false;
       this.showButton = true;
     }

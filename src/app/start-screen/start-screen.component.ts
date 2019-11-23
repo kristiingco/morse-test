@@ -16,13 +16,39 @@ export class StartScreenComponent implements OnInit {
   constructor(private router: Router, private httpClient: HttpClient) { }
 
   ngOnInit() {
-    if (localStorage.getItem('user_id')) {
-      this.router.navigate(['/input-instructions']);
-    }
+    this.movePage();
   }
 
   goToPage(pageName: string): void {
     this.router.navigate(['${pageName}']);
+  }
+
+
+  movePage() {
+    if (localStorage.getItem('user_id')) {
+      const currentQuestion = localStorage.getItem('question_id');
+      // tslint:disable-next-line: radix
+      if ([1].includes(parseInt(currentQuestion))) {
+        this.router.navigate(['/input-instructions']);
+      // tslint:disable-next-line: radix
+      } else if ([2].includes(parseInt(currentQuestion))) {
+        this.router.navigate(['/input-test']);
+      // tslint:disable-next-line: radix
+      } else if ([3].includes(parseInt(currentQuestion))) {
+        this.router.navigate(['/visual-instructions']);
+      // tslint:disable-next-line: radix
+      } else if ([4].includes(parseInt(currentQuestion))) {
+        this.router.navigate(['/visual-test']);
+      // tslint:disable-next-line: radix
+      } else if ([5].includes(parseInt(currentQuestion))) {
+        this.router.navigate(['/audio-instructions']);
+      // tslint:disable-next-line: radix
+      } else if ([6].includes(parseInt(currentQuestion))) {
+        this.router.navigate(['/audio-test']);
+      } else if ([7].includes(parseInt(currentQuestion))) {
+        this.router.navigate(['/finish']);
+      }
+    }
   }
 
   logIn() {
@@ -32,15 +58,15 @@ export class StartScreenComponent implements OnInit {
       password: this.password.value
     };
 
-    console.log(data);
-
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
 
     this.httpClient.post<any>('https://morse-test.herokuapp.com/api/login', JSON.stringify(data), {headers})
       .subscribe(res => {
         if (res) {
-          this.router.navigate(['/input-instructions']);
+          console.log(res.question_id);
           localStorage.setItem('user_id', this.userId.value);
+          localStorage.setItem('question_id', res.question_id);
+          this.movePage();
         }
       });
   }

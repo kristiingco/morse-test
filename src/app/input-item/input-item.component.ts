@@ -31,7 +31,13 @@ export class InputItemComponent implements OnInit {
     this.questionService.getInputQuestions().subscribe((data: any[]) => {
       console.log(data);
       this.items = data;
-      this.word = this.items[0].question;
+      const currentQuestion = localStorage.getItem('question_id');
+      if ([2].includes(parseInt(currentQuestion))) {
+        this.word = this.items[this.numberOfItems].question;
+        this.numberOfItems++;
+      } else {
+        this.word = this.items[0].question;
+      }
       this.currentLetter = this.word[0];
       console.log(this.word);
     });
@@ -125,12 +131,14 @@ export class InputItemComponent implements OnInit {
 
       if (this.numberOfItems < this.items.length) {
         this.word = this.items[this.numberOfItems].question;
+        localStorage.setItem('question_id', this.items[this.numberOfItems]._id);
         this.currentLetter = this.word[0];
         this.currentLetterIndex = 1;
         this.numberOfItems++;
         this.answerString = '';
         this.score = 0;
       } else {
+        localStorage.setItem('question_id', (localStorage.getItem('question_id') + 1));
         this.visible = false;
         this.showButton = true;
       }
