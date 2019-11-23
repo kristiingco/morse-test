@@ -108,7 +108,7 @@ function handleError(res, reason, message, code) {
     } else {
       var userObject = await db.collection(USERS_COLLECTION).find({user_id: user_id}).limit(1);
 
-      if (userObject) {
+      if (userObject.count() > 0) {
         if (userObject.password == password){
           //search scores collection for the latest question the user answered
           //so user can continue where they left off if they accidentally exit
