@@ -108,10 +108,10 @@ function handleError(res, reason, message, code) {
     } else {
       var userObject = await db.collection(USERS_COLLECTION).findOne({user_id: user_id});
 
-      if (userObject.count() > 0) {
+      if (userObject.count() <= 0) {
         handleError(res, "Invalid user input", "Does not exist", 400);
       }
-      
+
       if (userObject.password == password){
         //search scores collection for the latest question the user answered
         //so user can continue where they left off if they accidentally exit
