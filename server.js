@@ -113,6 +113,7 @@ function handleError(res, reason, message, code) {
             if (doc.length === 0) {
                 console.log("User doesn't exist");
             } 
+        }
     });
       if (userObject.password == password){
         //search scores collection for the latest question the user answered
