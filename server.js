@@ -107,7 +107,7 @@ function handleError(res, reason, message, code) {
       handleError(res, "Invalid user input", "Missing one of the required fields: [user_id, password]", 400);
     } else {
       db.collection(USERS_COLLECTION).count({ user_id: user_id })
-      .then((count) => {
+      .then( async (count) => {
         if (count > 0) {
           var userObject = await db.collection(USERS_COLLECTION) .findOne({user_id: user_id});
           if (userObject.password == password){
