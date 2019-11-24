@@ -104,7 +104,7 @@ function handleError(res, reason, message, code) {
     var user_id = user.user_id;
     var password = user.password;
     if (!user_id || !password) {
-      res.status(400).json({message: 'fail'});
+      res.status(200).json({message: 'fail'});
     } else {
       db.collection(USERS_COLLECTION).count({ user_id: user_id })
       .then( async (count) => {
@@ -127,10 +127,10 @@ function handleError(res, reason, message, code) {
               }
             });
         } else {
-          res.status(400).json({message: 'fail'});
+          res.status(200).json({message: 'fail'});
         }
       } else {
-        res.status(400).json({message: 'fail'});
+        res.status(200).json({message: 'fail'});
       }
       })
     }
