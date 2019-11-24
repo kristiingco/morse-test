@@ -107,7 +107,7 @@ function handleError(res, reason, message, code) {
       handleError(res, "Invalid user input", "Missing one of the required fields: [user_id, password]", 400);
     } else {
       try {
-      var userObject = await db.collection(USERS_COLLECTION).findOne({user_id: user_id});
+      var userObject = await db.collection(USERS_COLLECTION).find({user_id: user_id});
       if (userObject.password == password){
         //search scores collection for the latest question the user answered
         //so user can continue where they left off if they accidentally exit
