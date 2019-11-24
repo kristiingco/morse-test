@@ -133,7 +133,5 @@ function handleError(res, reason, message, code) {
         return err;
       }
       
-     
-
     }
   });
