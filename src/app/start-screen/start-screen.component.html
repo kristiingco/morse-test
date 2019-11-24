@@ -6,7 +6,7 @@
 ></app-button>
 
 <div style="display:block; margin-top: 30px; margin-bottom: 10px;">
-    <span *ngIf="showErrorMessage">invalid</span>
+    <div class="error" *ngIf="showErrorMessage">Invalid credentials</div>
     <span>Sign in to start</span>
     <input type="text" [formControl]="userId">
     <input type="password" [formControl]="password">

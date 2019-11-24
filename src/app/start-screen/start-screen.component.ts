@@ -12,6 +12,7 @@ export class StartScreenComponent implements OnInit {
 
   userId = new FormControl('');
   password = new FormControl('');
+  showErrorMessage = false;
 
   constructor(private router: Router, private httpClient: HttpClient) { }
 
@@ -68,7 +69,7 @@ export class StartScreenComponent implements OnInit {
           localStorage.setItem('question_id', res.question_id);
           this.movePage();
         } else if (res.message === 'fail') {
-          console.log("error");
+          this.showErrorMessage = true;
         }
       });
   }
