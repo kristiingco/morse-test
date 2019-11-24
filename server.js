@@ -106,7 +106,7 @@ function handleError(res, reason, message, code) {
     if (!user_id || !password) {
       handleError(res, "Invalid user input", "Missing one of the required fields: [user_id, password]", 400);
     } else {
-      var userObject = db.collection(USERS_COLLECTION).findOne({user_id: user_id});
+      var userObject = db.collection(USERS_COLLECTION).find({user_id: user_id});
       if (userObject) {
         if (userObject.password == password){
           //search scores collection for the latest question the user answered
