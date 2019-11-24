@@ -104,7 +104,7 @@ function handleError(res, reason, message, code) {
     var user_id = user.user_id;
     var password = user.password;
     if (!user_id || !password) {
-      res.status(400).json();
+      res.status(400).json({message: 'fail'});
     } else {
       db.collection(USERS_COLLECTION).count({ user_id: user_id })
       .then( async (count) => {
@@ -119,18 +119,18 @@ function handleError(res, reason, message, code) {
                     console.log(docs);
                     var question_id = parseInt(docs[0].question_id) + 1;
                     console.log(question_id);
-                    res.status(200).json({user_id: user_id, question_id: question_id.toString()});
+                    res.status(200).json({user_id: user_id, question_id: question_id.toString(), message: 'success'});
                   }
                 });
               } else {
-                res.status(200).json({user_id: user_id, question_id: "1"});
+                res.status(200).json({user_id: user_id, question_id: "1", message: 'success'});
               }
             });
         } else {
-          res.status(400).json();
+          res.status(400).json({message: 'fail'});
         }
       } else {
-        res.status(400).json();
+        res.status(400).json({message: 'fail'});
       }
       })
     }
