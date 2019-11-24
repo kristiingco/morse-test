@@ -99,14 +99,14 @@ function handleError(res, reason, message, code) {
    *    Required Params: 
    *    [user_id, password]
    */
-  app.post("/api/login", async function(req, res) {
+  app.post("/api/login", function(req, res) {
     var user = req.body;
     var user_id = user.user_id;
     var password = user.password;
     if (!user_id || !password) {
       handleError(res, "Invalid user input", "Missing one of the required fields: [user_id, password]", 400);
     } else {
-      var userObject = await db.collection(USERS_COLLECTION).findOne({user_id: user_id});
+      var userObject = db.collection(USERS_COLLECTION).findOne({user_id: user_id});
       if (userObject) {
         if (userObject.password == password){
           //search scores collection for the latest question the user answered
