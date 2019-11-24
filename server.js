@@ -104,7 +104,7 @@ function handleError(res, reason, message, code) {
     var user_id = user.user_id;
     var password = user.password;
     if (!user_id || !password) {
-      handleError(res, "Invalid user input", "Missing one of the required fields: [user_id, password]", 400);
+      res.status(400).json();
     } else {
       db.collection(USERS_COLLECTION).count({ user_id: user_id })
       .then( async (count) => {
@@ -127,10 +127,10 @@ function handleError(res, reason, message, code) {
               }
             });
         } else {
-          handleError(res, "Failed to login", "Invalid username or password", 400);
+          res.status(400).json();
         }
       } else {
-        handleError(res, "Failed to login", "Invalid username or password", 400);
+        res.status(400).json();
       }
       })
     }

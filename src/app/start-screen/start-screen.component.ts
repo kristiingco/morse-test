@@ -60,13 +60,16 @@ export class StartScreenComponent implements OnInit {
 
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
 
-    this.httpClient.post<any>('https://morse-test.herokuapp.com/api/login', JSON.stringify(data), {headers})
+    this.httpClient.post<any>('https://morse-test.herokuapp.com/api/login', JSON.stringify(data), {headers, observe: 'response'})
       .subscribe(res => {
-        if (res) {
-          console.log(res.question_id);
+        console.log(res.status);
+        if (res.status === 200) {
+          this.router.navigate(['/input-instructions']);
           localStorage.setItem('user_id', this.userId.value);
           localStorage.setItem('question_id', res.question_id);
           this.movePage();
+        } else if (res.status === 400) {
+          console.log("hi");
         }
       });
   }
