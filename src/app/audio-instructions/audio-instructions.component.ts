@@ -15,6 +15,7 @@ export class AudioInstructionsComponent implements OnInit {
   letter2 = new FormControl('');
   letters = [this.letter1, this.letter2];
   visible = true;
+  done = [];
   numberOfItems = 1;
   items = ['DO', 'EA'];
   word: string = this.items[0];
@@ -25,8 +26,11 @@ export class AudioInstructionsComponent implements OnInit {
   }
 
   playAudio(event, chara) {
-    const audio = morsify.audio(chara, { unit: 0.171 });
-    audio.play();
+    if (!this.done.includes(chara)) {
+      const audio = morsify.audio(chara, { unit: 0.171 });
+      audio.play();
+      this.done.push(chara);
+    }
   }
 
   nextWord(event) {
@@ -37,6 +41,7 @@ export class AudioInstructionsComponent implements OnInit {
       this.visible = false;
     }
 
+    this.done = [];
     this.letter1.setValue('');
     this.letter2.setValue('');
   }
