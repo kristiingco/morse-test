@@ -19,6 +19,7 @@ export class AudioItemComponent implements OnInit {
   letter4 = new FormControl('');
   letter5 = new FormControl('');
   letters = [this.letter1, this.letter2, this.letter3, this.letter4, this.letter5];
+  done = [];
   @Input() visible: boolean;
   numberOfItems = 1;
   items = [];
@@ -47,8 +48,11 @@ export class AudioItemComponent implements OnInit {
   }
 
   playAudio(event, chara) {
-    const audio = morsify.audio(chara, { unit: 0.171 });
-    audio.play();
+    if (!this.done.includes(chara)) {
+      const audio = morsify.audio(chara, { unit: 0.171 });
+      audio.play();
+      this.done.push(chara);
+    }
   }
 
   nextWord(event) {
@@ -105,6 +109,7 @@ export class AudioItemComponent implements OnInit {
       this.showButton = true;
     }
 
+    this.done = [];
     this.letter1.setValue('');
     this.letter2.setValue('');
     this.letter3.setValue('');
