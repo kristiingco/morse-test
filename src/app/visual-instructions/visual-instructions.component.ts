@@ -16,6 +16,7 @@ export class VisualInstructionsComponent implements OnInit {
   letters = [this.letter1, this.letter2];
   flashlights = ['flashlight1', 'flashlight2'];
   visible = true;
+  done = [];
   numberOfItems = 1;
   items = ['HE', 'IN'];
   word: string = this.items[0];
@@ -33,27 +34,32 @@ export class VisualInstructionsComponent implements OnInit {
     // 60 milliseconds for one dot
     // 180 milliseconds for a dash
     // multiplied by factor of 4 to slow it down here
-    const dot = 171;
-    const dash = 513;
-
-    const morse = morsify.encode(chara);
-    console.log(morse);
-
-    for (const morseChara of morse) {
-      if (morseChara === '.') {
-        // dot --modified
-        await this.flashlight('https://i.imgur.com/3sJr50R.png', 0, num);
-        // show white light to show when flash is finished
-        await this.flashlight('https://i.imgur.com/g7PUAYI.png', dot, num);
-      } else {
-        // dash at 3 X 60 or 180 --modified
-        await this.flashlight('https://i.imgur.com/3sJr50R.png', 0, num);
-        // show white light to show when flash is finished
-        await this.flashlight('https://i.imgur.com/g7PUAYI.png', dash, num);
+    if (!this.done.includes(num)) {
+      const dot = 171;
+      const dash = 513;
+  
+      const morse = morsify.encode(chara);
+      console.log(morse);
+  
+      for (const morseChara of morse) {
+        if (morseChara === '.') {
+          // dot --modified
+          await this.flashlight('https://i.imgur.com/3sJr50R.png', 0, num);
+          // show white light to show when flash is finished
+          await this.flashlight('https://i.imgur.com/g7PUAYI.png', dot, num);
+        } else {
+          // dash at 3 X 60 or 180 --modified
+          await this.flashlight('https://i.imgur.com/3sJr50R.png', 0, num);
+          // show white light to show when flash is finished
+          await this.flashlight('https://i.imgur.com/g7PUAYI.png', dash, num);
+        }
+        //pause after each dot or dash --i added
+        await this.flashlight('https://i.imgur.com/g7PUAYI.png', dot * 2, num);
       }
-      //pause after each dot or dash --i added
-      await this.flashlight('https://i.imgur.com/g7PUAYI.png', dot * 2, num);
+      this.done.push(num);
     }
+    
+
   }
 
   flashlight(image: string, time: any, num: number): Promise<any> {
@@ -76,6 +82,7 @@ export class VisualInstructionsComponent implements OnInit {
       this.visible = false;
     }
 
+    this.done = [];
     this.letter1.setValue('');
     this.letter2.setValue('');
 
