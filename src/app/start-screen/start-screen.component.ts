@@ -17,9 +17,10 @@ export class StartScreenComponent implements OnInit {
   constructor(private router: Router, private httpClient: HttpClient) { }
 
   ngOnInit() {
-    if (!localStorage.getItem('round')) {
+    if (localStorage.getItem('round') === null) {
       localStorage.setItem('round', '0');
     }
+    console.log(localStorage.getItem('round'));
     this.movePage();
   }
 
@@ -30,28 +31,62 @@ export class StartScreenComponent implements OnInit {
 
   movePage() {
     if (localStorage.getItem('user_id')) {
-      const currentQuestion = localStorage.getItem('question_id');
-      // tslint:disable-next-line: radix
-      if ([1].includes(parseInt(currentQuestion))) {
-        this.router.navigate(['/input-instructions']);
-      // tslint:disable-next-line: radix
-      } else if ([2].includes(parseInt(currentQuestion))) {
-        this.router.navigate(['/input-test']);
-      // tslint:disable-next-line: radix
-      } else if ([3].includes(parseInt(currentQuestion))) {
-        this.router.navigate(['/visual-instructions']);
-      // tslint:disable-next-line: radix
-      } else if ([4].includes(parseInt(currentQuestion))) {
-        this.router.navigate(['/visual-test']);
-      // tslint:disable-next-line: radix
-      } else if ([5].includes(parseInt(currentQuestion))) {
-        this.router.navigate(['/audio-instructions']);
-      // tslint:disable-next-line: radix
-      } else if ([6].includes(parseInt(currentQuestion))) {
-        this.router.navigate(['/audio-test']);
-      } else if ([7].includes(parseInt(currentQuestion))) {
-        this.router.navigate(['/finish']);
+      let currentQuestion = localStorage.getItem('question_id');
+      let round = parseInt(localStorage.getItem('round'));
+      console.log(currentQuestion);
+
+      if (round === 0) {
+        // tslint:disable-next-line: radix
+        if ([1].includes(parseInt(currentQuestion))) {
+          this.router.navigate(['/input-instructions']);
+        // tslint:disable-next-line: radix
+        } else if ([2].includes(parseInt(currentQuestion))) {
+          this.router.navigate(['/input-test']);
+        // tslint:disable-next-line: radix
+        } else if ([3].includes(parseInt(currentQuestion))) {
+          this.router.navigate(['/visual-instructions']);
+        // tslint:disable-next-line: radix
+        } else if ([4].includes(parseInt(currentQuestion))) {
+          this.router.navigate(['/visual-test']);
+        // tslint:disable-next-line: radix
+        } else if ([5].includes(parseInt(currentQuestion))) {
+          this.router.navigate(['/audio-instructions']);
+        // tslint:disable-next-line: radix
+        } else if ([6].includes(parseInt(currentQuestion))) {
+          this.router.navigate(['/audio-test']);
+        // tslint:disable-next-line: radix
+        } else if ([7].includes(parseInt(currentQuestion))) {
+          this.router.navigate(['/finish']);
+        }
+      } else if (round === 1) {
+        // tslint:disable-next-line: radix
+         if (parseInt(currentQuestion) === 1) {
+          currentQuestion = '7';
+         }
+        // tslint:disable-next-line: radix
+         if ([7].includes(parseInt(currentQuestion))) {
+          this.router.navigate(['/input-instructions']);
+        // tslint:disable-next-line: radix
+        } else if ([8, 9, 10].includes(parseInt(currentQuestion))) {
+          this.router.navigate(['/input-test']);
+        // tslint:disable-next-line: radix
+        } else if ([11].includes(parseInt(currentQuestion))) {
+          this.router.navigate(['/visual-instructions']);
+        // tslint:disable-next-line: radix
+        } else if ([12, 13, 14].includes(parseInt(currentQuestion))) {
+          this.router.navigate(['/visual-test']);
+        // tslint:disable-next-line: radix
+        } else if ([15].includes(parseInt(currentQuestion))) {
+          this.router.navigate(['/audio-instructions']);
+        // tslint:disable-next-line: radix
+        } else if ([16, 17, 18].includes(parseInt(currentQuestion))) {
+          this.router.navigate(['/audio-test']);
+        // tslint:disable-next-line: radix
+        } else if ([19].includes(parseInt(currentQuestion))) {
+          this.router.navigate(['/finish']);
+        }
       }
+
     }
   }
 

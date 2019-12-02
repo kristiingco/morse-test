@@ -1,0 +1,21 @@
+div {
+    width: 100%;
+    margin-left: 100px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+span {
+    margin-left: -200px;
+}
+
+app-button {
+    position: relative;
+    width: 600px;
+    display: inline-block;
+}
+
+app-button:last-child {
+    right: 200px;
+}
+

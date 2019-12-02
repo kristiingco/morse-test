@@ -1,1 +1,14 @@
-<p>change-round works!</p>
+<div>
+    <span>{{ notification }} Click below to change test type.</span>
+    <br>
+    <br>
+    <app-button
+    [text] = "'Pre-Test'"
+    (click)="changeRoundtoPreTest()"
+    ></app-button>
+    <app-button 
+    [text] = "'Post-Test'"
+    (click)="changeRoundtoPostTest()"
+    ></app-button>
+</div>
+

@@ -13,7 +13,7 @@ export class LogOutButtonComponent implements OnInit {
   }
 
   logOut() {
-    localStorage.clear();
+    localStorage.removeItem('user_id');
   }
 
 }

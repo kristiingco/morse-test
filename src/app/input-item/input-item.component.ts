@@ -28,15 +28,21 @@ export class InputItemComponent implements OnInit {
   constructor(private questionService: QuestionService, private httpClient: HttpClient) { }
 
   ngOnInit() {
-    this.questionService.getInputQuestions().subscribe((data: any[]) => {
+    // tslint:disable-next-line: radix
+    let round = parseInt(localStorage.getItem('round'));
+
+    this.questionService.getInputQuestions(round).subscribe((data: any[]) => {
       console.log(data);
       this.items = data;
-      const currentQuestion = localStorage.getItem('question_id');
-      if ([2].includes(parseInt(currentQuestion))) {
-        this.word = this.items[this.numberOfItems].question;
-        this.numberOfItems++;
-      } else {
-        this.word = this.items[0].question;
+      let currentQuestion = localStorage.getItem('question_id');
+      if (round === 1 && currentQuestion === '1') {
+        currentQuestion = '7';
+      }
+      for (let i = 0; i < data.length; i++) {
+        if (data[i]._id === currentQuestion) {
+          this.word = data[i].question;
+          this.numberOfItems = i + 1;
+        }
       }
       this.currentLetter = this.word[0];
       console.log(this.word);
@@ -138,7 +144,9 @@ export class InputItemComponent implements OnInit {
         this.answerString = '';
         this.score = 0;
       } else {
-        localStorage.setItem('question_id', (localStorage.getItem('question_id') + 1));
+        let question = parseInt(localStorage.getItem('question_id'));
+        localStorage.setItem('question_id', (question + 1).toString());
+        console.log(localStorage.getItem('question_id'));
         this.visible = false;
         this.showButton = true;
       }

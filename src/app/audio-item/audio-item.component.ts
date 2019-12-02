@@ -33,15 +33,17 @@ export class AudioItemComponent implements OnInit {
   constructor(private questionService: QuestionService, private httpClient: HttpClient) { }
 
   ngOnInit() {
-    this.questionService.getAudioQuestions().subscribe((data: any[]) => {
+    let round = parseInt(localStorage.getItem('round'));
+
+    this.questionService.getAudioQuestions(round).subscribe((data: any[]) => {
       console.log(data);
       this.items = data;
       const currentQuestion = localStorage.getItem('question_id');
-      if ([6].includes(parseInt(currentQuestion))) {
-        this.word = this.items[this.numberOfItems].question;
-        this.numberOfItems++;
-      } else {
-        this.word = this.items[0].question;
+      for (let i = 0; i < data.length; i++) {
+        if (data[i]._id === currentQuestion) {
+          this.word = data[i].question;
+          this.numberOfItems = i + 1;
+        }
       }
       console.log(this.word);
     });
@@ -104,7 +106,9 @@ export class AudioItemComponent implements OnInit {
       this.numberOfItems++;
       this.score = 0;
     } else {
-      localStorage.setItem('question_id', (localStorage.getItem('question_id') + 1));
+      let question = parseInt(localStorage.getItem('question_id'));
+      localStorage.setItem('question_id', (question + 1).toString());
+      console.log(localStorage.getItem('question_id'));
       this.visible = false;
       this.showButton = true;
     }
@@ -119,7 +123,7 @@ export class AudioItemComponent implements OnInit {
   }
 
   logOut() {
-    localStorage.clear();
+    localStorage.removeItem('user_id');
   }
 
 }

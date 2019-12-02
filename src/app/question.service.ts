@@ -7,19 +7,18 @@ import { HttpClient } from '@angular/common/http';
 export class QuestionService {
 
   questionUrl = 'https://morse-test.herokuapp.com/api/questions';
-  round = parseInt(localStorage.getItem('round'));
 
   constructor(private httpClient: HttpClient) { }
 
-  public getInputQuestions() {
-    return this.httpClient.get(this.questionUrl + '?round=' + this.round + '&question_type=input');
+  public getInputQuestions(round) {
+    return this.httpClient.get(this.questionUrl + '?round=' + round + '&question_type=input');
   }
 
-  public getAudioQuestions() {
-    return this.httpClient.get(this.questionUrl + '?round=' + this.round + '&question_type=audio');
+  public getAudioQuestions(round) {
+    return this.httpClient.get(this.questionUrl + '?round=' + round + '&question_type=audio');
   }
 
-  public getVisualQuestions() {
-    return this.httpClient.get(this.questionUrl + '?round=' + this.round + '&question_type=visual');
+  public getVisualQuestions(round) {
+    return this.httpClient.get(this.questionUrl + '?round=' + round + '&question_type=visual');
   }
 }
