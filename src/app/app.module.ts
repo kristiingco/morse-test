@@ -23,6 +23,7 @@ import { AudioItemComponent } from './audio-item/audio-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FinishComponent } from './finish/finish.component';
 import { LogOutButtonComponent } from './log-out-button/log-out-button.component';
+import { ChangeRoundComponent } from './change-round/change-round.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { LogOutButtonComponent } from './log-out-button/log-out-button.component
     TestAudioComponent,
     AudioItemComponent,
     FinishComponent,
-    LogOutButtonComponent
+    LogOutButtonComponent,
+    ChangeRoundComponent
   ],
   imports: [
     BrowserModule,
