@@ -17,6 +17,9 @@ export class StartScreenComponent implements OnInit {
   constructor(private router: Router, private httpClient: HttpClient) { }
 
   ngOnInit() {
+    if (!localStorage.getItem('round')) {
+      localStorage.setItem('round', '0');
+    }
     this.movePage();
   }
 

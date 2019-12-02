@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class QuestionService {
 
   questionUrl = 'https://morse-test.herokuapp.com/api/questions';
-  round = 0;
+  round = parseInt(localStorage.getItem('round'));
 
   constructor(private httpClient: HttpClient) { }
 
