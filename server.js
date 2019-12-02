@@ -113,7 +113,7 @@ function handleError(res, reason, message, code) {
           if (userObject.password == password){
             db.collection(SCORES_COLLECTION).find({user_id: user_id}).count(function (err, count) {
               if (!err && count !== 0) {
-                db.collection(SCORES_COLLECTION).find({user_id: user_id}).sort({question_id:-1}).limit(1)
+                db.collection(SCORES_COLLECTION).find({user_id: user_id}).sort({question_id:-1}).collation({locale: "en_US", numericOrdering: true}).limit(1)
                 .toArray(function(err, docs) {
                   if (!err) {
                     console.log(docs);
