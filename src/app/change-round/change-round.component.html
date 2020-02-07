@@ -1,14 +1,22 @@
-<div>
+<div class="main">
     <span>{{ notification }} Click below to change test type.</span>
     <br>
+    <div class="second">
+        <input type="checkbox" (change)="showPreTestButton = !showPreTestButton" name="preTestButton"/>
+        <label for="preTestButton">Skip Pre-Test</label>
+    </div>
     <br>
+    <br>
+   <div class="buttons">
     <app-button
     [text] = "'Pre-Test'"
     (click)="changeRoundtoPreTest()"
+    *ngIf="showPreTestButton"
     ></app-button>
     <app-button 
     [text] = "'Post-Test'"
     (click)="changeRoundtoPostTest()"
     ></app-button>
+   </div>
 </div>
 

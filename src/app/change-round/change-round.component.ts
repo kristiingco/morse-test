@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ChangeRoundComponent implements OnInit {
 
   notification = localStorage.getItem('round') === '0' ? 'You are taking the pre-test.' : 'You are taking the post-test.';
+  showPreTestButton = true;
 
   constructor() { }
 

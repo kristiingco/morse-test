@@ -1,4 +1,4 @@
-div {
+.main {
     width: 100%;
     margin-left: 100px;
     margin-top: 50px;
@@ -9,13 +9,17 @@ span {
     margin-left: -200px;
 }
 
-app-button {
+.second {
     position: relative;
-    width: 600px;
-    display: inline-block;
+    margin-left: -170px;
 }
 
-app-button:last-child {
-    right: 200px;
+.buttons {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: -30px;
+    margin-left: -175px;
 }
+
 
